@@ -6,13 +6,100 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/Id"
+        app:layout_constraintTop_toBottomOf="@+id/Id" />
+
+    <EditText
+        android:id="@+id/calificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Calificacion"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/nombre"
+        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+
+    <Button
+        android:id="@+id/guardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="guardar"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calificacion" />
+
+    <Button
+        android:id="@+id/borrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="borrar"
+        android:text="Borrar"
+        app:layout_constraintStart_toStartOf="@+id/guardar"
+        app:layout_constraintTop_toBottomOf="@+id/guardar" />
+
+    <Button
+        android:id="@+id/buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:onClick="buscar"
+        android:text="Buscar"
+        app:layout_constraintStart_toStartOf="@+id/borrar"
+        app:layout_constraintTop_toBottomOf="@+id/borrar" />
+
+    <EditText
+        android:id="@+id/Id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:ems="10"
+        android:hint="Id"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/memoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="12dp"
+        android:onClick="guardarMemoria"
+        android:text="Guardar en momoria"
+        app:layout_constraintBottom_toTopOf="@+id/almacenamiento"
+        app:layout_constraintStart_toStartOf="@+id/almacenamiento" />
+
+    <Button
+        android:id="@+id/almacenamiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="78dp"
+        android:onClick="guardarAlmacenameinto"
+        android:text="Guardar en almacenamiento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buscar" />
+
+    <Button
+        android:id="@+id/imprimir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="11dp"
+        android:onClick="imprimirPropiedad"
+        android:text="imprimir propiedad"
+        app:layout_constraintStart_toStartOf="@+id/almacenamiento"
+        app:layout_constraintTop_toBottomOf="@+id/almacenamiento" />
 </androidx.constraintlayout.widget.ConstraintLayout>
