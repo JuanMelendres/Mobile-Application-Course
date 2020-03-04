@@ -3,6 +3,7 @@ package com.itesm.localstorage;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -99,5 +100,10 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "VALOR DE PROPIEDAD: " +
                 properties.get("ejemplo"),
                 Toast.LENGTH_SHORT).show();
+    }
+
+    public void cambiarASharedPrefs(View v) {
+        Intent intentito = new Intent(this, SharePrefActivity.class);
+        startActivity(intentito);
     }
 }
