@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Marzo25</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="saludo">Buenos dias!</string>
+    <string name="saludo2">HOLA MUNDO!</string>
+    <string name="b_fragmento">fragmento</string>
+    <string name="b_recycler">reciclador</string>
+    <string name="b_request">solicitud</string>
+</resources>
