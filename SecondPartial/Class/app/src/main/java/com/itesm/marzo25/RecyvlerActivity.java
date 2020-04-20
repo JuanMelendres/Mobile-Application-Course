@@ -1,7 +1,10 @@
 package com.itesm.marzo25;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
+import com.example.marzo25.R;
 
 public class RecyvlerActivity extends AppCompatActivity {
 

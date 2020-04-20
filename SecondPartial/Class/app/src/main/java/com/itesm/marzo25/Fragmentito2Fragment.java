@@ -5,13 +5,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.provider.Contacts;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.marzo25.R;
 
 
 /**
@@ -20,6 +21,7 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class Fragmentito2Fragment extends Fragment {
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String NOMBRE = "nombre";
     private static final String EDAD = "edad";
@@ -38,11 +40,11 @@ public class Fragmentito2Fragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param nombre Parameter 1.
-     * @param edad Parameter 2.
-     * @param peso Parameter 3.
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
      * @return A new instance of fragment Fragmentito2Fragment.
      */
+    // TODO: Rename and change types and number of parameters
     public static Fragmentito2Fragment newInstance(String nombre, float edad, float peso) {
         Fragmentito2Fragment fragment = new Fragmentito2Fragment();
         Bundle args = new Bundle();
@@ -68,11 +70,11 @@ public class Fragmentito2Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragmentito2, container, false);
-        TextView textito1 = v.findViewById(R.id.textView3);
+        TextView textito1 = v.findViewById(R.id.textView2);
         TextView textito2 = v.findViewById(R.id.textView4);
         TextView textito3 = v.findViewById(R.id.textView5);
+        Button botoncito = v.findViewById(R.id.button);
 
-        Button botoncito = v.findViewById(R.id.button2);
         botoncito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,23 +90,26 @@ public class Fragmentito2Fragment extends Fragment {
     }
 
     public void saludar() {
-        Log.wtf("7AM", "Hola buenos dias");
+
+        Log.wtf("7AM", "BUENOS DIAS!");
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Context context){
         super.onAttach(context);
         this.context = context;
 
-        if (context instanceof Callback) {
-            listener = (Callback) context;
-        }
-        else {
-            throw new RuntimeException("Tratando de anexar una actividad que no puede escucharme");
+        if(context instanceof Callback){
+            listener = (Callback)context;
+
+        } else {
+
+            throw new RuntimeException("TRATANDO DE ANEXAR UNA ACTIVIDAD QUE NO PUEDE ESCUCHARME");
         }
     }
 
-    public interface Callback {
+    public interface Callback{
+
         public void ejecutarAccion();
     }
 }

@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.marzo25.R;
 
 
 /**
@@ -26,13 +29,15 @@ public class FragmentitoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragmentito, container, false);
-        Button b = v.findViewById(R.id.button);
+        Button b = v.findViewById(R.id.button2);
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.wtf("FRAGMENTITO", "HOLA DESDE EL FRAGMENTO");
+                Log.wtf("FRAGMENTITO","HOLA DESDE EL FRAGMENTO");
             }
         });
+
         return v;
     }
 }

@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.marzo25.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,40 +34,41 @@ public class MainActivity extends AppCompatActivity implements Fragmentito2Fragm
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        //transaction.add(R.id.contenedor, fragmentito, "fragmento");
         transaction.add(R.id.contenedor, fragmentito2, "fragmento");
         transaction.commit();
 
         fragmentito2.saludar();
 
-        Toast.makeText(this, getString(R.string.saludo), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.saludo), Toast.LENGTH_LONG).show();
 
         // JSON
         // notacion ligera para intercambio de informacion
         // comunmente utilizado en web
-        String jsonTest = "{`nombre`:`Juan`, `edad`:20}";
-        String jsonTest2 = "{`nombre`:`pedro`, `califiaciones`:[89, 92, 70, 88]}";
-        String jsonTest3 = "[{`nombre`:`Juan`, `edad`:20}, {`nombre`:`Pedro`, `edad`:19}, {`nombre`:`Maria`, `edad`:21}]";
+        String jsonTest = "{'nombre':'Juan', 'edad':20}";
+        String jsonTest2 = "{'nombre':'Pedro', 'calificaciones':[89, 92, 70, 88]}";
+        String jsonTest3 = "[{'nombre':'Juan', 'edad':20}, {'nombre':'Pedro', 'edad':19}, {'nombre':'Maria', 'edad':21}]";
 
         try {
             JSONObject objeto = new JSONObject(jsonTest);
-            Log.wtf("Json", objeto.getString("nombre"));
-            Log.wtf("Json", objeto.getInt("edad") + "");
+            Log.wtf("JSON", objeto.getString("nombre"));
+            Log.wtf("JSON", objeto.getInt("edad") + "");
 
             JSONObject objeto2 = new JSONObject(jsonTest2);
-            Log.wtf("Json", objeto.getString("nombre"));
-
             JSONArray calificaciones = objeto2.getJSONArray("calificaciones");
-            for (int i = 0; i < calificaciones.length(); i++) {
+
+            for(int i = 0; i < calificaciones.length(); i++){
+
                 Log.wtf("JSON", calificaciones.getInt(i) + "");
             }
 
             JSONArray objeto3 = new JSONArray(jsonTest3);
-            for (int i = 0; i < objeto3.length(); i++) {
+            for(int i = 0; i < objeto3.length(); i++){
+
                 JSONObject actual = objeto3.getJSONObject(i);
                 Log.wtf("JSON", actual.getString("nombre"));
                 Log.wtf("JSON", actual.getInt("edad") + "");
             }
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -74,31 +77,39 @@ public class MainActivity extends AppCompatActivity implements Fragmentito2Fragm
         dataHandler = new Handler(Looper.getMainLooper(), this);
     }
 
-    public void swapFragments(View v) {
-        // Objetivo - quitar fragmento inicial, poner nuevo
+    public void swapFragments(View v){
+
+        // objetivo - quitar fragmento inicial, poner nuevo
         FragmentManager manager = getSupportFragmentManager();
         Fragment f = manager.findFragmentByTag("fragmento");
-        if (f != null) {
+
+        if(f != null){
+
             FragmentitoFragment nuevo = new FragmentitoFragment();
+
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.remove(f);
             transaction.add(R.id.contenedor, nuevo, "fragmento");
             transaction.commit();
         }
+
     }
 
     @Override
     public void ejecutarAccion() {
-        Toast.makeText(this, "Metodo de interfaz llamado", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, "METODO DE INTERFAZ LLAMADO", Toast.LENGTH_SHORT).show();
     }
 
-    public void request(View v) {
+    public void request(View v){
+
         Request r = new Request("https://api.github.com/users", dataHandler);
         r.start();
     }
 
     @Override
     public boolean handleMessage(@NonNull Message msg) {
+
         JSONArray datos = (JSONArray) msg.obj;
         Toast.makeText(this, datos.toString(), Toast.LENGTH_SHORT).show();
         return true;
