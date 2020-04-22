@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -105,6 +106,11 @@ public class MainActivity extends AppCompatActivity implements Fragmentito2Fragm
 
         Request r = new Request("https://api.github.com/users", dataHandler);
         r.start();
+    }
+
+    public void abrirRecyclerView(View v) {
+        Intent intent = new Intent(this, RecyvlerActivity.class);
+        startActivity(intent);
     }
 
     @Override
