@@ -1,19 +1,31 @@
 package com.itesm.maps;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
+    private LocationRequest solicitud;
+    private Location lastLocation;
+    private LocationCallback callback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +50,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng salon = new LatLng(20.737030, -103.454188);
+        mMap.addMarker(new MarkerOptions().position(salon).title("NUESTRO QUERIDO SALON"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(salon, 18));
+        mMap.setOnMapClickListener(this);
+        habilitarMyLocation();
+    }
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    @Override
+    public void onMapClick(LatLng latLng) {
+        mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .title("marcador dinamico")
+                .alpha(0.5f)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+    }
+
+    public void habilitarMyLocation() {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+
+            String[] permisos = {Manifest.permission.ACCESS_FINE_LOCATION};
+            requestPermissions(permisos, 0);
+        } else {
+
+            mMap.setMyLocationEnabled(true);
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] p, int[] r){
+        if(requestCode == 0 && r[0] == PackageManager.PERMISSION_GRANTED){
+
+            Toast.makeText(this, "SI ME DIERON PERMISO :D", Toast.LENGTH_SHORT).show();
+            mMap.setMyLocationEnabled(true);
+        } else {
+
+            Toast.makeText(this, "NO ME DIERON PERMISO :'(", Toast.LENGTH_SHORT).show();
+        }
     }
 }
